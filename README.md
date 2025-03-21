@@ -3,46 +3,72 @@
 # Overview
 One of the most interesting courses I took during my Master's was Operating Systems (OS). As part of the coursework, I worked on three assignments that deepened my understanding of OS concepts. I modified XV6 OS, a lightweight version of Linux, to explore its inner workings and gain hands-on experience. 
 
-# Assignment 1
+Here's a refined version of your **Assignment 1 description** with improved clarity and structure:  
 
-The coding task in this project is to implement a system service that allows user programs to obtain the number of invocation times of three different system calls, fork(), wait(), and exit().
+---
 
-Steps:
+# **Assignment 1: System Call Invocation Counter**  
 
-1) Implement the interface for user programs to use the system service
+### **Objective**  
+The goal of this assignment was to implement a **system service** that allows user programs to track the number of times the following system calls are invoked:  
+- `fork()`, `wait()`, and `exit()`.  
 
-    Each system call should have a corresponding library function that user programs call to invoke the system call. Its like a wrapper function and interface to access the system call.
+This involved modifying **XV6 OS** to introduce system calls that maintain invocation counters.  
 
-    **int get syscall count(int call_type)**: It returns number of invocation of a system call. call type, which specifies the system call of which the invocation times the caller intends to obtain(0 - fork(), 1-wait(), 2-exit())
+---
 
-    **int reset syscall count(void)**: This function resets of the invocation counters of all the three system calls to 0.
+## **Implementation Steps**  
 
-    files modified:
-        user.h
-        testcount.c
-        Makefile
-        usys.S
+### **1) Implement the User Program Interface**  
+- Created **wrapper functions** to allow user programs to interact with the system service.  
+- Implemented two interface functions:  
 
+  int get_syscall_count(int call_type);
+  - Returns the number of times a system call has been invoked.  
+  - `call_type` values:  
+    - `0` → `fork()`  
+    - `1` → `wait()`  
+    - `2` → `exit()`  
 
-2) Implement the system calls for the service
-    We need to implement the system calls corresponding the two interface fucntions detailed above. 
+  ```c
+  int reset_syscall_count(void);
+  ```
+  - Resets all three counters to `0`.  
 
-    files modified:
-    syscall.c
-    syscall.h
+- **Files Modified:**  
+  - `user.h`  
+  - `testcount.c`  
+  - `Makefile`  
+  - `usys.S`  
 
-3) Implement the logic of the system service
-    The service logic is fairly simple: maintain an invocation counter for each supported system call, increment the counter each time the system call is invoked, and reset it to 0 when the user program instructs so.
+---
 
-    file modified:
-    sysproc.c
+### **2) Implement the System Calls**  
+- Defined the new system calls that map to the user interface functions.  
+- Integrated the calls into **XV6’s syscall table**.  
 
-Key Takeaway:
-understanding how the existing user commands and the associated system calls
-are implemented.
+- **Files Modified:**  
+  - `syscall.c`  
+  - `syscall.h`  
 
+---
 
-For a detailed implementation, refer to this [file] in the repository. (./OS_Assignment1_SystemCall/xv6-syscall-mechanisms.pdf)
+### **3) Implement the System Service Logic**  
+- Maintained **counters** for each system call (`fork`, `wait`, `exit`).  
+- Incremented the respective counter each time the system call was invoked.  
+- Implemented logic to reset counters when instructed by the user.  
+
+- **File Modified:**  
+  - `sysproc.c`  
+
+---
+
+## **Key Takeaways**  
+- Gained hands-on experience in **XV6 system call mechanisms**.  
+- Understood how **user commands interact with system calls** in the OS.  
+- Explored modifications to key OS files and **syscall handling logic**.  
+
+For a detailed implementation, refer to [this file in the repository](./OS_Assignment_SharedMemoryPages/xv6-syscall-mechanisms).  
 
 
 # Assignment 2
