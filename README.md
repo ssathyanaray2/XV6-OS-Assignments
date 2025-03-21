@@ -3,10 +3,6 @@
 # Overview
 One of the most interesting courses I took during my Master's was Operating Systems (OS). As part of the coursework, I worked on three assignments that deepened my understanding of OS concepts. I modified XV6 OS, a lightweight version of Linux, to explore its inner workings and gain hands-on experience. 
 
-Here's a refined version of your **Assignment 1 description** with improved clarity and structure:  
-
----
-
 # **Assignment 1: System Call Invocation Counter**  
 
 ### **Objective**  
@@ -62,6 +58,7 @@ For a detailed implementation, refer to [this file in the repository](./OS_Assig
 
 
 # Assignment 2
+
 
 
 
