@@ -10,63 +10,53 @@ Here's a refined version of your **Assignment 1 description** with improved clar
 # **Assignment 1: System Call Invocation Counter**  
 
 ### **Objective**  
-The goal of this assignment was to implement a **system service** that allows user programs to track the number of times the following system calls are invoked:  
-- `fork()`, `wait()`, and `exit()`.  
+The goal of this assignment was to implement a system service that allows user programs to track the number of times the following system calls are invoked:  
+- fork(), wait(), and exit().  
 
-This involved modifying **XV6 OS** to introduce system calls that maintain invocation counters.  
-
----
+This involved modifying XV6 OS to introduce system calls that maintain invocation counters.  
 
 ## **Implementation Steps**  
 
 ### **1) Implement the User Program Interface**  
-- Created **wrapper functions** to allow user programs to interact with the system service.  
+- Created wrapper functions to allow user programs to interact with the system service.  
 - Implemented two interface functions:  
 
-  int get_syscall_count(int call_type);
+  **int get_syscall_count(int call_type)**;
   - Returns the number of times a system call has been invoked.  
-  - `call_type` values:  
-    - `0` → `fork()`  
-    - `1` → `wait()`  
-    - `2` → `exit()`  
+  - call_type values:  
+    - 0 → fork()  
+    - 1 → wait()  
+    - 2 → exit()  
 
-  ```c
-  int reset_syscall_count(void);
-  ```
-  - Resets all three counters to `0`.  
+  **int reset_syscall_count(void);**
+  - Resets all three counters to 0.  
 
 - **Files Modified:**  
-  - `user.h`  
-  - `testcount.c`  
-  - `Makefile`  
-  - `usys.S`  
-
----
+  - user.h
+  - testcount.c
+  - Makefile
+  - usys.S
 
 ### **2) Implement the System Calls**  
 - Defined the new system calls that map to the user interface functions.  
-- Integrated the calls into **XV6’s syscall table**.  
+- Integrated the calls into XV6’s syscall table.  
 
 - **Files Modified:**  
-  - `syscall.c`  
-  - `syscall.h`  
-
----
+  - syscall.c  
+  - syscall.h
 
 ### **3) Implement the System Service Logic**  
-- Maintained **counters** for each system call (`fork`, `wait`, `exit`).  
+- Maintained counters for each system call (fork, wait, exit).  
 - Incremented the respective counter each time the system call was invoked.  
 - Implemented logic to reset counters when instructed by the user.  
 
 - **File Modified:**  
-  - `sysproc.c`  
-
----
+  - sysproc.c 
 
 ## **Key Takeaways**  
-- Gained hands-on experience in **XV6 system call mechanisms**.  
-- Understood how **user commands interact with system calls** in the OS.  
-- Explored modifications to key OS files and **syscall handling logic**.  
+- Gained hands-on experience in XV6 system call mechanisms.  
+- Understood how user commands interact with system calls in the OS.  
+- Explored modifications to key OS files and syscall handling logic.  
 
 For a detailed implementation, refer to [this file in the repository](./OS_Assignment_SharedMemoryPages/xv6-syscall-mechanisms).  
 
