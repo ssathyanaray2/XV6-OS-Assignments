@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/spoorthisanjay/githubCleanup/XV6 Course Assignments/OS_Assignment1_SystemCall",
+      "program": "/Users/spoorthisanjay/githubCleanup/XV6 Course Assignments/OS_Assignment1_SystemCall/build/Debug/outDebug"
+    }
+  ]
+}
