@@ -136,7 +136,46 @@ In the second part, I implemented stride scheduler instead of default round robi
 - Understood the working of process table, user mode and kernal mode.
 - Understood the concept of different states of a process from creation to termination.
 
-# Assignment 3
+# Assignment 3 - Interprocess communication and Shared memory pages
+In this project, I have implemented functionality where the two pages after the user stack page are used as shared memory pages which can be used for inter-process communication among different processes. In other words, the (n + 3)-th page and the (n + 4)-th page in an address space are reserved as shared memory page, where 'n' is the number of pages used for the process code and data. 
+
+The first shared memory page is mapped to physical memory statically when an address space is initialized. Therefore, we call this page in an address space the statically mapped shared memory page (SMSMP). The second shared memory page should be mapped to physical memory dynamically when a process first writes on it. Therefore, we call this page in an address space the dynamically mapped shared memory page (DMSMP).
+
+### **1) Implemented user-interface and system call
+- 
+- 
+    **char* get_shared_page_addr(int type)**
+        - return address of shared memory page.
+        - 0: statically mapped shared memory page
+        - 1: dynamically mapped shared memory
+
+- **Files Modified:**  
+    - shmtest12.c
+    - shmtest34.c
+    - usys.S
+    - Makefile
+    - user.h
+    - syscall.c
+    - syscall.h
+    - sysproc.c
+
+### **2) Implement Logic for SMSMP and DMSMP
+- Implement logic for SMSMP in exec.c, statically a memory of size equal to PGSIZE(page size) is allocated as SMSMP and update process table about the address of the page.
+- Implement logic for DMSMP in exec.c using mappage function in vm.c, a custom funtion map the page dynamically when a process writes to that location. This function is run as a part of interrupt service routine.
+
+- **Files Modified:**
+    - proc.c
+    - exec.c
+    - main.c
+    - proc.h
+    - vm.c
+    - defs.h
+    - trap.c
+
+## **Key Takeaways**  
+- Understand address space layout of process described in exec.c
+- Understand the functioning of interrupts and implementation of traps and interrup service routines.
+- Deep dive into different form of interprocess communication and implement shared memory pages.
 
 
 # Instructions to run each of the project
