@@ -180,4 +180,35 @@ The first shared memory page is mapped to physical memory statically when an add
 
 # Instructions to run each of the project
 
+### **1. Install Required Dependencies**  
+Run the following command to install the necessary packages:  
+
+sudo apt update && sudo apt install build-essential qemu gcc-multilib gdb git
+- build-essential: Required for compiling XV6.  
+- qemu: Emulator to run XV6.  
+- gcc-multilib: Allows compiling 32-bit programs on a 64-bit system.  
+- gdb: Debugger for debugging XV6.  
+
+
+### **2. Clone the Project**  
+
+
+### **3. Compile XV6**  
+Run:  
+make
+
+
+### **4. Run XV6 in QEMU**  
+To start XV6 in the QEMU emulator:  
+make qemu
+
+For a version with **GDB debugging support**:  
+make qemu-gdb
+
+
+### **5. Clean and Recompile (If Needed)**  
+make clean
+make
+make qemu
+
 
